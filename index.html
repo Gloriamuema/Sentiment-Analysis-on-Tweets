@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tweet Sentiment Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .container {
+      background: white;
+      width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Tweet Sentiment Analyzer</h2>
+    <form action="/predict" method="post">
+      <textarea name="tweet" rows="4" placeholder="Enter your tweet here..."></textarea><br>
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <strong>Tweet:</strong> {{ tweet }} <br>
+        <strong>Sentiment:</strong> {{ prediction }}
+      </div>
+    {% endif %}
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
